@@ -1,0 +1,56 @@
+body {
+    margin: 0px;
+}
+main {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+h1 {
+    text-align: center;
+}
+.navbar {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 70px;
+    align-items: center;
+    background-color: hsl(0, 0%, 25%);
+    float: none;
+}
+
+.navbar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.navbar ul li {
+    margin-right: 15px;
+}
+
+.navbar ul li:last-child {
+    margin-right: 0;
+}
+
+.navbar ul li:first-child {
+    margin-left: 15px;
+}
+.navbar ul li a img {
+    height: 30px;  /* Thiết lập chiều cao cho biểu tượng */
+    width: auto;  /* Chiều rộng tự động điều chỉnh theo tỷ lệ */
+    vertical-align: middle; /* Căn giữa biểu tượng với các mục khác trong navbar */
+    margin-left: 30px; /* Dịch chuyển hình ảnh sang phải 30px */
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 15px;
+    display: block;
+    text-align: center;
+}
+
+.navbar a:hover {
+    background-color: hsl(0, 0%, 10%);
+}
