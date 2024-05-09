@@ -1,16 +1,9 @@
-{% load static %}
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Colo Shop Template">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Đăng nhập</title>
-    <link href="{% static 'css/main_styles.css' %}" rel="stylesheet" />
-</head>
-<body>
+{% extends "page/layout.html" %}
+{% block title %}
+Login
+{% endblock %}
+{% load static %}
     <div class="container" style="margin-top: 160px">
         <h2>Đăng nhập</h2>
         <hr />
@@ -53,5 +46,4 @@
             </div>
         </div>
     </div>
-</body>
 </html>

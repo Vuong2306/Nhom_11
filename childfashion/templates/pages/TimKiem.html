@@ -1,0 +1,25 @@
+{% extends "page/layout.html" %}
+{% block title %}
+Tìm kiếm
+{% endblock %}
+{% load static %}
+{% block content %} 
+<div class="container">
+    <h1 style="text-align: center;">KẾT QUẢ TÌM KIẾM</h1>
+    <div class="row row-cols-4">
+    
+      {% for dssp in keys %}
+      <div class="card" style="width: 20rem;">
+        <div class="card-body">
+          <img src="{% static 'images/' %}{{ dssp.HinhAnh }}" alt="" width="50px">
+          <h5 class="card-title">{{dssp.TenSP}}</h5>
+          <p class="card-text">{{dssp.DonGia}}</p>
+          <a href="#" class="card-link">Thêm vào giỏ hàng</a>
+          <a href="#" class="card-link">Xem chi tiết</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+    
+{% endblock %}
