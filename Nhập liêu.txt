@@ -1,0 +1,11 @@
+insert into 'childfashion_Bangsp' values ('1','Áo thun', '50000', 'h1.jpg', 'Áo thun có chất liệu từ vải thun cotton được làm từ sợi bông xenlulozo, là một loại sợi lấy từ thiên nhiên có đặc tính hút ẩm cực tốt. Được ứng dụng trong áo thun, để tạo sự thoải mái, thoáng mái cho người sử dụng. Đây chính là loại trang phục thích hợp nhất cho trẻ khi tham giao vào các hoạt động vui chơi cùng bạn bè, đi du lịch cùng gia đình hoặc tham gia vào các bữa tiệc.', 'Bao tay', '6M', 'Xanh',1)
+('2', 'Bộ ngắn tay cổ tròn Siro','h2.jpg', 'Bộ ngắn tay cổ tròn Siro với thiết kế chui đầu co giãn tốt, dễ dàng dể mặc vào/cởi ra. Với phối túi ngực tạo điểm nhấn thời trang. Quần có cạp chun mềm mại, co giãn ôm "bụng sữa". Chất liệu Siro mềm mướt, an toàn cho làn da trẻ. ','Mũ bunny', '5M', 'Cà phê',3 ),
+('3', 'Bộ dài tay cổ chồm Leafly ','h3.jpg', 'Áo sơ mi mang đến sự trưởng thành, chỉn chu và chững chạc cho hoàng tử nhí nhà mình mỗi khi mặc, là một items đa-zi-năng rất dễ phối đồ. Để bé luôn cảm thấy thoải mái và dễ chịu mỗi khi diện những chiếc áo thun do chính tay mình lựa chọn ','Mũ buộc dây bonnet', '9M', ' D15 - Trắng in lá - Hồng',4 ),
+('4', 'Bộ gile có mũ','h4.jpg', 'Bộ gile có mũ là trang phục thời trang dành cho các em bé. Áo hoodie sát nách khỏe khoắn. Biến hóa đa phong cách với khóa mũ. Cạp quần may chặn giữa, chống lật/vặn chun khi giặt. Túi quần lộn trái tạo điểm nhấn. Bo gấu quần giữ ấm và vừa vặn.','Mũ nút thắt bunny', '3M', 'Kem',4 ),
+('5', 'Set Quần yếm kèm áo ngắn tay và mũ bé trai Mimo','h5.jpg', 'Set Quần yếm kèm áo ngắn tay và mũ bé trai Mimo với thiết kế dây yếm cài cúc dễ dàng điều chỉnh. Bo chun ống yếm hạn chế lộ bỉm. Cạp chun mềm mại ôm bụng sữa. Chất liệu 100% tự nhiên an toàn, lành tính','Mũ ', '5M', 'Trắng - xanh rêu',3 ),
+('6', 'Áo thun ngắn tay Mickey bé trai','h6.jpg', 'Áo thun bé trai một là outfits tiện lợi cho mẹ và bé, với kiểu dáng áo thun cá tính, năng động giúp bé thoải mái vận động. Với những mẫu áo thun bạn có thể phối cho bé nhiều outfits mặc ở nhà, đi học, đi chơi, đi tiệc,... ','Giày', '3S', 'Xanh đậm - mickey',2 ),
+
+Áo : Áo sơ mi: 1, Áo thun: 2
+
+Bộ ngắn tay: 3
+Bộ dài tay : 4 

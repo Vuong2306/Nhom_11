@@ -1,0 +1,12 @@
+{% extends "page/layout.html" %}
+{% block title %}
+Thêm Danh Mục
+{% endblock %}
+{% block content %} 
+<h2 class="w-100 text-center p-3 text-danger">THÊM DANH MỤC</h2>
+<form action="/childfashion/themdm" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Thêm loại">
+</form>
+{% endblock %}
