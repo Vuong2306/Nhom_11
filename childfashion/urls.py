@@ -12,4 +12,6 @@ urlpatterns = [
     path('dmloai', views.DMLoai, name='dmloai'),
     path('giohang', views.giohang, name='giohang'),
     path('themdm', views.themdm, name='themdm'),
+    path('themsp', views.ThemSP, name='themsp'),
+    path('chitietsp/<int:product_id>', views.chitietsp, name='chitietsp'),
 ]

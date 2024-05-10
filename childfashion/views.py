@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import Loai,BangSP
 from .forms import TheLoai1Form,TheLoai2Form,ThemLoaiForm
@@ -18,6 +18,7 @@ def register(request):
 def menu_top(request):
     # Xử lý logic cho menu_top ở đây
     return render(request, 'pages/menu_top.html')
+
 
 def DSSP1(request):
     data = {
@@ -54,3 +55,16 @@ def themdm(request):
             form.save()
             return HttpResponseRedirect('/chilfashion/dmloai')
     return render(request, 'pages/ThemDM.html', {'form': form})
+
+def chitietsp(request, product_id):
+    product = get_object_or_404(BangSP, pk=product_id)
+    return render(request, 'pages/ChiTietSP.html', {'product': product})
+
+def ThemSP(request):
+    form = TheLoai2Form()
+    if request.method == "POST":
+        form = TheLoai2Form(request.POST)
+        if form.is_valid():
+            form.save();
+            return HttpResponseRedirect('/childfashion/DSSP1')
+    return render(request, 'pages/ThemSP.html', {'form': form, 'DMLoai': Loai.objects.all()})
