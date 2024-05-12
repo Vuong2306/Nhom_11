@@ -1,0 +1,25 @@
+{% extends "page/layout.html" %}
+{% block title %}
+DSSP1
+{% endblock %}
+{% block content %} 
+<table class="table table-striped table-hover">
+    <thead class="thead-dark bg-secondary">
+        <tr>
+            <td>STT</td>
+            <td>Tên sản phẩm</td>
+            <td>Đơn giá</td>
+            <td>Mã loại</td>
+        </tr>
+    </thead>
+    {% for tl in BangSP %}
+    <tr>
+        <td>{{tl.id}}</td>
+        <td>{{tl.TenSP}}</td>
+        <td>{{tl.DonGia}}</td>
+        <td>{{tl.ML.id}}</td>
+    </tr>
+    {% endfor %}
+</table>
+    
+{% endblock %}
