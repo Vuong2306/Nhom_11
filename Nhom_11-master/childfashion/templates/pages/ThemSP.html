@@ -1,0 +1,62 @@
+{% extends "page/layout.html" %}
+{% block title %}
+Them san pham
+{% endblock %}
+{% block content %} 
+    <h2 class="w-100 text-center p-3 text-danger"> Thêm sản phẩm</h2>
+    <form action="/childfashion/ThemSP" method="POST">
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label >Tên sản phẩm:</label>
+                    <input class="form-control" name = "TenSP">
+                </div>
+                <div class="form-group">
+                    <label >Đơn giá:</label>
+                    {{form.DonGia}}
+                </div>
+                <div class="form-group">
+                    <label >Chọn thể loại:</label>
+                    <select name="ML" >
+                        {% for ml in DMLoai %}
+                        <option value="{{ml.id}}">{{ml.TenLoai}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label >Hinh anh:</label>
+                    {{form.HinhAnh}}
+                </div>
+                
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label >Mô tả:</label>
+                    {{form.MoTa}}
+                </div>
+            </div>
+        </div>
+        
+        <input type="file" id="imageInput" accept="image/*" onchange="previewImage(event)">
+        <div id="imagePreview"></div>
+        <!-- {{form.as_p}} -->
+        <input type="submit" value="Thêm loại">
+    </form>
+    <script>
+            function previewImage(event) {
+            var input = event.target;
+            var reader = new FileReader();
+            
+            reader.onload = function() {
+                var imagePreview = document.getElementById('imagePreview');
+                var imgElement = document.createElement('img');
+                imgElement.src = reader.result;
+                imagePreview.innerHTML = '';
+                imagePreview.appendChild(imgElement);
+            };
+            
+            reader.readAsDataURL(input.files[0]);
+    }
+    </script>
+{% endblock %}

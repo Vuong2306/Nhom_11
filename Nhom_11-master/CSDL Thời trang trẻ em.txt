@@ -1,0 +1,21 @@
+CSDL Thời trang trẻ em:
+	Danh mục loại
+- Tên DM
+- Mã DM
+	Sản phẩm	
+- Tên sp
+- Giới tính 
+- Kích thước
+- Phụ kiện 
+- Bộ sưu tập
+- Màu sắc
+- Mã DM
+
+
+	Thành viên
+
+	Giỏ Hàng
+- Ten SP
+- Số lượng
+- Tổng cộng
+- Xóa sản phẩm
