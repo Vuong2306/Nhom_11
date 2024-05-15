@@ -18,15 +18,15 @@ Home
                             <th>Remove</th>
                         </tr>
                     </thead>
-                    {% for dssp in BangSP %}
+                    {% for item in cart_items %}
                     <tbody class="align-middle">
                         <tr class="showbuy">
                             <td class="align-middle">
-                                <img src="{% static 'images/' %}{{ dssp.HinhAnh }}" alt="" width="50px">
-                                <h5 class="card-title">{{dssp.TenSP}}</h5>
+                                <img src="{% static 'images/' %}{{ item.HinhAnh }}" alt="" width="50px">
+                                <h5 class="card-title">{{item.TenSP}}</h5>
                             </td>
-                            <td class="align-middle"><p class="card-text">{{dssp.DonGia}}</p></td>
-                    {% endfor %}
+                            <td class="align-middle"><p class="card-text">{{item.DonGia}}</p></td>
+
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
                                     <div class="input-group-btn">
@@ -43,10 +43,16 @@ Home
                                 </div>
                             </td>
                             <td class="align-middle">VNĐ</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
+                            <td class="align-middle" id="product{{ item.id }}">
+                                <button class="btn btn-sm btn-primary btn-delete" data-product-id="{{ item.id }}">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </td>
                         </tr>
 
                     </tbody>
+                    {% endfor %}
+
                     
                 </table>
             </div> 
@@ -86,7 +92,7 @@ Home
     </div>
 
 </main>
-<script>
+<Script>
     document.addEventListener("DOMContentLoaded", function () {
         // Lấy tất cả các nút tăng và giảm
         var decreaseButtons = document.querySelectorAll('.btn-minus');
@@ -123,7 +129,6 @@ Home
             });
         });
     });
-
 
 </script>
 {% endblock %}
