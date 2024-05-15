@@ -43,9 +43,12 @@ def TimKiem(request):
         searched = request.POST["searched"]
         keys = BangSP.objects.filter(TenSP__contains = searched)
         return render (request, 'pages/TimKiem.html', {"searched": searched, "keys": keys})
-    
 def giohang(request):
-    return render(request, 'pages/GioHang.html')
+    # Lấy thông tin giỏ hàng từ cơ sở dữ liệu
+    cart_items = BangSP.objects.all()  # Lấy tất cả các sản phẩm từ cơ sở dữ liệu
+
+    # Trả về template "GioHang.html" kèm theo thông tin giỏ hàng
+    return render(request, 'pages/GioHang.html', {'cart_items': cart_items})
 
 def themdm(request):
     form = ThemLoaiForm()
@@ -68,3 +71,18 @@ def ThemSP(request):
             form.save();
             return HttpResponseRedirect('/childfashion/DSSP1')
     return render(request, 'pages/ThemSP.html', {'form': form, 'DMLoai': Loai.objects.all()})
+
+def Men(request):
+    product_ids = [1, 4, 5, 6]
+    products = BangSP.objects.filter(id__in=product_ids)
+    return render(request, 'pages/Men.html', {'BangSP': products})
+
+def Women(request):
+    product_ids = [2, 3]
+    products = BangSP.objects.filter(id__in=product_ids)
+    return render(request, 'pages/Women.html', {'BangSP': products})
+
+def Baby(request):
+    product_ids = [1, 2, 5]
+    products = BangSP.objects.filter(id__in=product_ids)
+    return render(request, 'pages/Baby.html', {'BangSP': products})

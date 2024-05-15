@@ -14,4 +14,7 @@ urlpatterns = [
     path('themdm', views.themdm, name='themdm'),
     path('themsp', views.ThemSP, name='themsp'),
     path('chitietsp/<int:product_id>', views.chitietsp, name='chitietsp'),
+    path('men', views.Men, name='men'),
+    path('women', views.Women, name='women'),
+    path('baby', views.Baby, name='baby'),
 ]
