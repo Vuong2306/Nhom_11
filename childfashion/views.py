@@ -64,13 +64,16 @@ def chitietsp(request, product_id):
     return render(request, 'pages/ChiTietSP.html', {'product': product})
 
 def ThemSP(request):
-    form = TheLoai2Form()
     if request.method == "POST":
-        form = TheLoai2Form(request.POST)
+        form = TheLoai2Form(request.POST, request.FILES)
         if form.is_valid():
-            form.save();
-            return HttpResponseRedirect('/childfashion/DSSP1')
+            form.save()
+            return HttpResponseRedirect('/childfashion/dssp1')
+    else:
+        form = TheLoai2Form()
     return render(request, 'pages/ThemSP.html', {'form': form, 'DMLoai': Loai.objects.all()})
+
+
 
 def Men(request):
     product_ids = [1, 4, 5, 6]
