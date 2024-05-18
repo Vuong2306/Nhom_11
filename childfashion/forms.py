@@ -24,4 +24,4 @@ class TheLoai2Form(forms.ModelForm):
 
     class Meta:
         model = BangSP
-        fields = ["TenSP", "DonGia", "HinhAnh", "MoTa","ML"]
+        fields = ['TenSP', 'DonGia', 'ML', 'HinhAnh', 'MoTa']

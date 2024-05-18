@@ -9,16 +9,8 @@ Home
         <div class="row px-xl-5">
             <div class="col-lg-8 table-responsive mb-5">
                 <table class="table table-bordered text-center mb-0">
-                    <thead class="bg-secondary text-dark">
-                        <tr>
-                            <th>Products</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Total</th>
-                            <th>Remove</th>
-                        </tr>
-                    </thead>
-                    {% for item in cart_items %}
+                    
+                    <!-- {% for item in cart_items %}
                     <tbody class="align-middle">
                         <tr class="showbuy">
                             <td class="align-middle">
@@ -51,19 +43,70 @@ Home
                         </tr>
 
                     </tbody>
+                    {% endfor %} -->
+                    <thead class="bg-secondary text-dark">
+                        <tr>
+                            <th>Products</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    
+                    {% if cart %}
+                       <div class="input-group-append">
+                            <a href="/childfashion/clearCart" class="btn btn-sm text-dark p-0">
+                                <i class="fas fa-trash text-primary mr-1 fs-3">
+                                </i>
+                            </a>
+                        </div>
+                    
+                    {% for item in cart %}
+                    
+                    <tbody class="align-middle">
+                        <tr class="showbuy">
+                            <td class="align-middle">
+                                <img src="{% static 'images/' %}{{ item.hinhanh }}" alt="" width="50px">
+                                <h5 class="card-title">{{item.name}}</h5>
+                            </td>
+                            <td class="align-middle"><p class="card-text">{{item.price}} VND</p></td>
+
+                            <td class="align-middle">
+                                <div class="input-group quantity mx-auto" style="width: 100px;">
+                                    
+                                    <form action="{% url 'updatequantity' item.id %}" method="POST">
+                                        {% csrf_token %}
+                                        <input class="form-control me-2" type="number" name="quantity" value="{{item.quantity}}">
+                                        <button type="submit" class="btn btn-success">
+                                            Cập nhật
+                                        </button>
+                                    </form>
+                                    
+                                </div>
+                            </td>
+                            <td class="align-middle">VNĐ</td>
+                            <td class="align-middle">
+                                <a href="/childfashion/deleteToCart/{{item.id}}" class="btn btn-sm text-dark p-0"><i class="fas fa-times-circle text-primary mr-1 fs-4"></i></a>
+                            </td>
+                        </tr>
+
+                    </tbody>
                     {% endfor %}
+                    {% else %}
+                    <h1>Không có sản phẩm trong giỏ hàng</h1>
+                    {% endif %}
+                    
+
+
+                    
 
                     
                 </table>
             </div> 
             <div class="col-lg-4">
                 <form class="mb-5" action="">
-                    <div class="input-group">
-                        <input type="text" class="form-control p-4" placeholder="Coupon Code">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary">Apply Coupon</button>
-                        </div>
-                    </div>
+                    
                 </form>
                 <div class="card border-secondary mb-5">
                     <div class="card-header bg-secondary border-0">
@@ -92,43 +135,4 @@ Home
     </div>
 
 </main>
-<Script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Lấy tất cả các nút tăng và giảm
-        var decreaseButtons = document.querySelectorAll('.btn-minus');
-        var increaseButtons = document.querySelectorAll('.btn-plus');
-        // Lấy tất cả các nút xóa
-        var deleteButtons = document.querySelectorAll('.btn-delete');
-        // Kiểm tra nếu có yêu cầu từ trang "DSSP2.html" để thêm sản phẩm vào giỏ hàng
-        var productId = new URLSearchParams(window.location.search).get('productId');
-
-        // Thêm sự kiện click cho mỗi nút giảm
-        decreaseButtons.forEach(function (button) {
-            button.addEventListener('click', function () {
-                var input = button.parentNode.nextElementSibling; // Lấy thẻ span chứa số lượng
-                var value = parseInt(input.innerText); // Lấy giá trị số lượng hiện tại
-                if (value > 0) {
-                    input.innerText = value - 1; // Giảm số lượng đi 1 nếu số lượng hiện tại lớn hơn 0
-                }
-            });
-        });
-
-        // Thêm sự kiện click cho mỗi nút tăng
-        increaseButtons.forEach(function (button) {
-            button.addEventListener('click', function () {
-                var input = button.parentNode.previousElementSibling; // Lấy thẻ span chứa số lượng
-                var value = parseInt(input.innerText); // Lấy giá trị số lượng hiện tại
-                input.innerText = value + 1; // Tăng số lượng lên 1
-            });
-        });
-
-        deleteButtons.forEach(function (button) {
-            button.addEventListener('click', function () {
-                var row = button.closest('tr'); // Lấy hàng gần nhất (closest) chứa nút xóa
-                row.remove(); // Xóa hàng
-            });
-        });
-    });
-
-</script>
 {% endblock %}

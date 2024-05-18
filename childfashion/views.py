@@ -39,17 +39,10 @@ def DMLoai(request):
     }
     return render(request, 'pages/DMLoai.html', data)
 def TimKiem(request):
-    if (request.method == 'POST'):
+    if request.method == "POST":
         searched = request.POST["searched"]
-        keys = BangSP.objects.filter(TenSP__contains = searched)
-        return render (request, 'pages/TimKiem.html', {"searched": searched, "keys": keys})
-def giohang(request):
-    # Lấy thông tin giỏ hàng từ cơ sở dữ liệu
-    cart_items = BangSP.objects.all()  # Lấy tất cả các sản phẩm từ cơ sở dữ liệu
-
-    # Trả về template "GioHang.html" kèm theo thông tin giỏ hàng
-    return render(request, 'pages/GioHang.html', {'cart_items': cart_items})
-
+        keys = BangSP.objects.filter(TenSP__icontains = searched)
+        return render(request, 'pages/TimKiem.html', {"searched": searched, "keys":keys})
 def themdm(request):
     form = ThemLoaiForm()
     if (request.method == "POST"):
@@ -64,12 +57,13 @@ def chitietsp(request, product_id):
     return render(request, 'pages/ChiTietSP.html', {'product': product})
 
 def ThemSP(request):
-    form = TheLoai2Form()
     if request.method == "POST":
-        form = TheLoai2Form(request.POST)
+        form = TheLoai2Form(request.POST, request.FILES)
         if form.is_valid():
-            form.save();
-            return HttpResponseRedirect('/childfashion/DSSP1')
+            form.save()
+            return HttpResponseRedirect('/childfashion/dssp1')
+    else:
+        form = TheLoai2Form()
     return render(request, 'pages/ThemSP.html', {'form': form, 'DMLoai': Loai.objects.all()})
 
 def Men(request):
@@ -86,3 +80,84 @@ def Baby(request):
     product_ids = [1, 2, 5]
     products = BangSP.objects.filter(id__in=product_ids)
     return render(request, 'pages/Baby.html', {'BangSP': products})
+def addToCart(request, id):
+    product = BangSP.objects.get(id=id)
+    cart = []
+    if 'cart' in request.session:
+        cart = request.session['cart']
+    
+    updateCart = []
+    inCart = False
+    for cartProduct in cart:
+        currentId = cartProduct.get('id')
+        if currentId == product.id:
+            inCart = True
+            cartProduct['quantity'] = int(cartProduct['quantity']) + 1
+        updateCart.append(cartProduct)
+        
+    if inCart == False:
+        updateCart.append({
+            'id': product.id,
+            'name': product.TenSP,
+            'hinhanh': product.HinhAnh,
+            'price': product.DonGia,
+            'quantity': 1,
+        }) 
+    request.session['cart'] = updateCart
+
+    return HttpResponseRedirect('/childfashion/dssp2')
+
+
+def viewCart(request):
+    cart = None
+    if 'cart' in request.session:
+        cart = request.session['cart']
+    print(cart)
+    return render(request, 'pages/GioHang.html', {'cart':cart})
+def clearCart(request):
+    del request.session['cart']
+    return HttpResponseRedirect('/childfashion/giohang')
+def deleteToCart(request,id):
+    cart = []
+    if 'cart' in request.session:
+        cart = request.session['cart']
+    
+    updateCart = []
+    for cartProduct in cart:
+        currentId = cartProduct.get('id')
+        if currentId != id:
+            updateCart.append(cartProduct)
+
+    request.session['cart'] = updateCart
+        
+    return HttpResponseRedirect('/childfashion/giohang')
+
+def updateQuantity(request, id):
+    quantity = int(request.POST['quantity'])
+    product = BangSP.objects.get(id=id)
+    cart = []
+    if 'cart' in request.session:
+        cart = request.session['cart']
+    
+    updateCart = []
+    inCart = False
+    for cartProduct in cart:
+
+        currentId = cartProduct.get('id')
+        print(currentId)
+        if currentId == product.id:
+            inCart = True
+            cartProduct['quantity'] = quantity
+        updateCart.append(cartProduct)
+        
+    if inCart == False:
+        updateCart.append({
+            'id': product.id,
+            'name': product.TenSP,
+            'hinhanh': product.HinhAnh,
+            'price': product.DonGia,
+            'quantity': quantity,
+        }) 
+    request.session['cart'] = updateCart
+    return HttpResponseRedirect('/childfashion/giohang')
+
