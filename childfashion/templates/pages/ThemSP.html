@@ -26,6 +26,10 @@ Thêm sản phẩm
                 </div>
                 <div class="form-group">
                     <label >Hình ảnh:</label>
+                    {{ form.SoLuong }}
+                </div>
+                <div class="form-group">
+                    <label >Hình ảnh:</label>
                     {{ form.HinhAnh }}
                 </div>
             </div>
@@ -43,7 +47,7 @@ Thêm sản phẩm
         function previewImage(event) {
             var input = event.target;
             var reader = new FileReader();
-            
+
             reader.onload = function() {
                 var imagePreview = document.getElementById('imagePreview');
                 var imgElement = document.createElement('img');
@@ -51,7 +55,7 @@ Thêm sản phẩm
                 imagePreview.innerHTML = '';
                 imagePreview.appendChild(imgElement);
             };
-            
+
             reader.readAsDataURL(input.files[0]);
         }
     </script>
