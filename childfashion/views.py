@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import Loai,BangSP
@@ -82,7 +83,35 @@ def Baby(request):
     product_ids = [1, 2, 5]
     products = BangSP.objects.filter(id__in=product_ids)
     return render(request, 'pages/Baby.html', {'BangSP': products})
-def addToCart(request, id):
+
+def addToProductCart(request, id):
+    product = BangSP.objects.get(id=id)
+    cart = []
+    if 'cart' in request.session:
+        cart = request.session['cart']
+    
+    updateCart = []
+    inCart = False
+    for cartProduct in cart:
+        currentId = cartProduct.get('id')
+        if currentId == product.id:
+            inCart = True
+            cartProduct['quantity'] = int(cartProduct['quantity']) + 1
+        updateCart.append(cartProduct)
+        
+    if inCart == False:
+        updateCart.append({
+            'id': product.id,
+            'name': product.TenSP,
+            # 'hinhanh': product.HinhAnh,
+            'price': product.DonGia,
+            'quantity': 1,
+        }) 
+    request.session['cart'] = updateCart
+
+    return HttpResponseRedirect('/childfashion/chitietsp/'+str(id))
+
+def addToCart(request, id): 
     product = BangSP.objects.get(id=id)
     cart = []
     if 'cart' in request.session:
@@ -114,8 +143,16 @@ def viewCart(request):
     cart = None
     if 'cart' in request.session:
         cart = request.session['cart']
-    print(cart)
-    return render(request, 'pages/GioHang.html', {'cart':cart})
+    product_item_total = []
+    for item in cart:
+        item_total = int(item['price']) * item['quantity']
+        product_item_total.append(item_total)
+    product_total = sum(int(item['price']) * item['quantity'] for item in cart)
+    
+    for i, item in enumerate(cart):
+        item['item_total'] = product_item_total[i]
+    
+    return render(request, 'pages/GioHang.html', {'cart':cart,'product_total':product_total, 'product_item_total': product_item_total })
 def clearCart(request):
     del request.session['cart']
     return HttpResponseRedirect('/childfashion/giohang')
@@ -131,7 +168,7 @@ def deleteToCart(request,id):
             updateCart.append(cartProduct)
 
     request.session['cart'] = updateCart
-        
+    messages.success(request, 'Xóa sản phẩm thành công')
     return HttpResponseRedirect('/childfashion/giohang')
 
 def updateQuantity(request, id):
@@ -156,10 +193,12 @@ def updateQuantity(request, id):
         updateCart.append({
             'id': product.id,
             'name': product.TenSP,
-            # 'hinhanh': product.HinhAnh,
+            'hinhanh': product.HinhAnh,
             'price': product.DonGia,
             'quantity': quantity,
         }) 
     request.session['cart'] = updateCart
+
+    messages.success(request, 'Cập nhật sản phẩm thành công')
     return HttpResponseRedirect('/childfashion/giohang')
 

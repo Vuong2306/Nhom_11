@@ -18,6 +18,7 @@ urlpatterns = [
     path('women', views.Women, name='women'),
     path('baby', views.Baby, name='baby'),
     path('addToCart/<int:id>', views.addToCart, name='addtocart'),
+    path('addToProductCart/<int:id>', views.addToProductCart, name='addtocart'),
     path('deleteToCart/<int:id>', views.deleteToCart, name='deletetocart'),
     path('updateQuantity/<int:id>', views.updateQuantity, name='updatequantity'),
     path('clearCart', views.clearCart, name='clearcart'),

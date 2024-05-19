@@ -11,7 +11,7 @@ def upload_image_to(instance, filename):
 
 class BangSP(models.Model):
     TenSP = models.CharField(max_length=100)
-    DonGia = models.CharField(max_length=100)
+    DonGia = models.IntegerField(null=True, blank=True)
     HinhAnh = models.ImageField(upload_to=upload_image_to)
     MoTa = models.TextField(max_length=100)
     PhuKien = models.CharField(max_length=100)
