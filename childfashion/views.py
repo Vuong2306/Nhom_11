@@ -66,6 +66,8 @@ def ThemSP(request):
         form = TheLoai2Form()
     return render(request, 'pages/ThemSP.html', {'form': form, 'DMLoai': Loai.objects.all()})
 
+
+
 def Men(request):
     product_ids = [1, 4, 5, 6]
     products = BangSP.objects.filter(id__in=product_ids)
