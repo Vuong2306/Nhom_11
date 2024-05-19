@@ -99,7 +99,7 @@ def addToCart(request, id):
         updateCart.append({
             'id': product.id,
             'name': product.TenSP,
-            'hinhanh': product.HinhAnh,
+            # 'hinhanh': product.HinhAnh,
             'price': product.DonGia,
             'quantity': 1,
         }) 
@@ -154,7 +154,7 @@ def updateQuantity(request, id):
         updateCart.append({
             'id': product.id,
             'name': product.TenSP,
-            'hinhanh': product.HinhAnh,
+            # 'hinhanh': product.HinhAnh,
             'price': product.DonGia,
             'quantity': quantity,
         }) 
