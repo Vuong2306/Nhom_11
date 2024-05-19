@@ -1,11 +1,22 @@
+
 {% extends "page/layout2.html" %}
 {% block title %}
 Home
 {% endblock %}
 {% load static %}
+{% load humanize %}
 {% block content %}
 <main>
     <div class="container-fluid pt-5">
+        {% if messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endif %}
+
         <div class="row px-xl-5">
             <div class="col-lg-8 table-responsive mb-5">
                 <table class="table table-bordered text-center mb-0">
@@ -67,10 +78,10 @@ Home
                     <tbody class="align-middle">
                         <tr class="showbuy">
                             <td class="align-middle">
-                                <!-- <img src="{% static 'images/' %}{{ item.hinhanh }}" alt="" width="50px"> -->
+                                <img src="{% static 'images/' %}{{ item.hinhanh }}" alt="" width="50px">
                                 <h5 class="card-title">{{item.name}}</h5>
                             </td>
-                            <td class="align-middle"><p class="card-text">{{item.price}} VND</p></td>
+                            <td class="align-middle"><p class="card-text">{{item.price|intcomma}} VND</p></td>
 
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
@@ -85,10 +96,11 @@ Home
                                     
                                 </div>
                             </td>
-                            <td class="align-middle">VNĐ</td>
+                            <td class="align-middle"> {{item.item_total|intcomma}}</td>
                             <td class="align-middle">
-                                <a href="/childfashion/deleteToCart/{{item.id}}" class="btn btn-sm text-dark p-0"><i class="fas fa-times-circle text-primary mr-1 fs-4"></i></a>
+                                <a href="/childfashion/deleteToCart/{{item.id}}" class="btn btn-sm text-dark p-0" onclick="return confirm('Bạn có chắc xóa sản phẩm này ?')"><i class="fas fa-times-circle text-primary mr-1 fs-4"></i></a>
                             </td>
+                            
                         </tr>
 
                     </tbody>
@@ -112,20 +124,11 @@ Home
                     <div class="card-header bg-secondary border-0">
                         <h4 class="font-weight-semi-bold m-0">Cart Summary</h4>
                     </div>
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between mb-3 pt-1">
-                            <h6 class="font-weight-medium">Subtotal</h6>
-                            <h6 class="font-weight-medium">$150</h6>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <h6 class="font-weight-medium">Shipping</h6>
-                            <h6 class="font-weight-medium">$10</h6>
-                        </div>
-                    </div>
+                    
                     <div class="card-footer border-secondary bg-transparent">
                         <div class="d-flex justify-content-between mt-2">
                             <h5 class="font-weight-bold">Total</h5>
-                            <h5 class="font-weight-bold">$160</h5>
+                            <h5 class="font-weight-bold">{{ product_total|intcomma }} VND</h5>
                         </div>
                         <button class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button>
                     </div>
