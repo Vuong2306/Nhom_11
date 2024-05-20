@@ -3,58 +3,57 @@
 Đăng Ký
 {% endblock %}
 {% load static %}
-    <div class="container" style="margin-top: 160px">
-        <h2>Đăng ký</h2>
-        <hr />
-        <div class="row">
-            <div class="col-md-12">
-                <section id="registerForm">
-                    <form method="post" action="{% url 'register' %}" class="form-horizontal" role="form">
-                        {% csrf_token %}
-                        <h4>Điền thông tin để tạo tài khoản mới</h4>
-                        <hr />
-                        {% if messages %}
-                            <div>
-                                {% for message in messages %}
-                                    {{ message }}
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-                        <div class="form-group">
-                            <label class="col-md-2 control-label" for="id_username">Tên đăng nhập</label>
-                            <div class="col-md-10">
-                                <input id="id_username" name="username" type="text" class="form-control" required>
-                            </div>
+{% block content %}
+<div class="container" style="margin-top: 160px">
+    <h2>Đăng ký</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <section id="registerForm">
+                <form method="post" action="{% url 'register' %}" class="form-horizontal" role="form">
+                    {% csrf_token %}
+                    <h4>Điền thông tin để tạo tài khoản mới</h4>
+                    {% if form.non_field_errors %}
+                    <p>Có lỗi xảy ra:</p>
+                    <ul>
+                        {% for error in form.non_field_errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="id_username">Tên đăng nhập</label>
+                        <div class="col-md-10">
+                            {{ form.username }}
                         </div>
-                        <div class="form-group">
-                            <label class="col-md-2 control-label" for="id_email">Email</label>
-                            <div class="col-md-10">
-                                <input id="id_email" name="email" type="email" class="form-control" required>
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="id_email">Email</label>
+                        <div class="col-md-10">
+                            {{ form.email }}
                         </div>
-                        <div class="form-group">
-                            <label class="col-md-2 control-label" for="id_password1">Mật khẩu</label>
-                            <div class="col-md-10">
-                                <input id="id_password1" name="password1" type="password" class="form-control" required>
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="id_password1">Mật khẩu</label>
+                        <div class="col-md-10">
+                            {{ form.password1 }}
                         </div>
-                        <div class="form-group">
-                            <label class="col-md-2 control-label" for="id_password2">Xác nhận mật khẩu</label>
-                            <div class="col-md-10">
-                                <input id="id_password2" name="password2" type="password" class="form-control" required>
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="id_password2">Xác nhận mật khẩu</label>
+                        <div class="col-md-10">
+                            {{ form.password2 }}
                         </div>
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Đăng Ký" class="btn btn-default" />
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="hidden" name="next" value="/login/" />
+                            <input type="submit" value="Đăng kí">
                         </div>
-                    </form>
-                    <p>
-                        Đã có tài khoản? <a href="{% url 'login' %}" class="btn btn-default">Đăng nhập</a>.
-                    </p>
-                </section>
-            </div>
+                    </div>
+                </form>
+            </section>
         </div>
     </div>
-</html>
+</div>
+{% endblock %}

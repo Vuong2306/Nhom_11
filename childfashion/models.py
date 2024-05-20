@@ -13,10 +13,10 @@ class BangSP(models.Model):
     TenSP = models.CharField(max_length=100)
     DonGia = models.IntegerField(null=True, blank=True)
     HinhAnh = models.ImageField(upload_to=upload_image_to)
-    MoTa = models.TextField(max_length=100)
+    MoTa = models.TextField(max_length=1000)
     PhuKien = models.CharField(max_length=100)
-    KichThuoc = models.CharField(max_length=100)
-    MauSac = models.CharField(max_length=100)
+    KichThuoc = models.CharField(max_length=100, blank=True)  # Cho phép giá trị trống
+    MauSac = models.CharField(max_length=100, blank=True) 
     SoLuong = models.IntegerField(null=True, blank=True)
     ML = models.ForeignKey(Loai, on_delete=models.CASCADE, related_name='BangSP')
 

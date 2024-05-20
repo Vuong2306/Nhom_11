@@ -9,54 +9,84 @@ Thêm sản phẩm
         <div class="form-row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label >Tên sản phẩm:</label>
+                    <label for="id_TenSP">Tên sản phẩm:</label>
                     {{ form.TenSP }}
                 </div>
                 <div class="form-group">
-                    <label >Đơn giá:</label>
+                    <label for="id_DonGia">Đơn giá:</label>
                     {{ form.DonGia }}
                 </div>
                 <div class="form-group">
-                    <label >Chọn thể loại:</label>
-                    <select name="ML" >
+                    <label for="id_ML">Chọn thể loại:</label>
+                    <select name="ML" id="id_ML">
                         {% for ml in DMLoai %}
-                        <option value="{{ml.id}}">{{ml.TenLoai}}</option>
+                        <option value="{{ ml.id }}">{{ ml.TenLoai }}</option>
                         {% endfor %}
                     </select>
                 </div>
                 <div class="form-group">
-                    <label >Hình ảnh:</label>
-                    {{ form.SoLuong }}
-                </div>
-                <div class="form-group">
-                    <label >Hình ảnh:</label>
+                    <label for="id_HinhAnh">Hình ảnh:</label>
                     {{ form.HinhAnh }}
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label >Mô tả:</label>
+                    <label for="id_MoTa">Mô tả:</label>
                     {{ form.MoTa }}
                 </div>
             </div>
+            <div class="d-flex mb-3">
+                <p class="text-dark font-weight-medium mb-0 mr-3">Sizes:</p>
+                <div>
+                    <div class="custom-control custom-checkbox custom-control-inline">
+                        <input type="checkbox" class="custom-control-input" id="size-1" name="size" value="XS">
+                        <label class="custom-control-label" for="size-1">XS</label>
+                    </div>
+                    <div class="custom-control custom-checkbox custom-control-inline">
+                        <input type="checkbox" class="custom-control-input" id="size-2" name="size" value="S">
+                        <label class="custom-control-label" for="size-2">S</label>
+                    </div>
+                    <div class="custom-control custom-checkbox custom-control-inline">
+                        <input type="checkbox" class="custom-control-input" id="size-3" name="size" value="M">
+                        <label class="custom-control-label" for="size-3">M</label>
+                    </div>
+                    <div class="custom-control custom-checkbox custom-control-inline">
+                        <input type="checkbox" class="custom-control-input" id="size-4" name="size" value="L">
+                        <label class="custom-control-label" for="size-4">L</label>
+                    </div>
+                    <div class="custom-control custom-checkbox custom-control-inline">
+                        <input type="checkbox" class="custom-control-input" id="size-5" name="size" value="XL">
+                        <label class="custom-control-label" for="size-5">XL</label>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex mb-4">
+                <p class="text-dark font-weight-medium mb-0 mr-3">Colors:</p>
+                <div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input" id="color-1" name="color" value="Black">
+                        <label class="custom-control-label" for="color-1">Black</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input" id="color-2" name="color" value="White">
+                        <label class="custom-control-label" for="color-2">White</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input" id="color-3" name="color" value="Red">
+                        <label class="custom-control-label" for="color-3">Red</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input" id="color-4" name="color" value="Blue">
+                        <label class="custom-control-label" for="color-4">Blue</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input" id="color-5" name="color" value="Green">
+                        <label class="custom-control-label" for="color-5">Green</label>
+                    </div>
+                </div>
+            </div>
+            
         </div>
-
-        <input type="submit" value="Thêm loại">
+        <input type="submit" value="Thêm sản phẩm">
     </form>
-    <script>
-        function previewImage(event) {
-            var input = event.target;
-            var reader = new FileReader();
-
-            reader.onload = function() {
-                var imagePreview = document.getElementById('imagePreview');
-                var imgElement = document.createElement('img');
-                imgElement.src = reader.result;
-                imagePreview.innerHTML = '';
-                imagePreview.appendChild(imgElement);
-            };
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    </script>
 {% endblock %}
